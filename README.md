@@ -1,37 +1,25 @@
 # Thomas de Schulthess — portfolio
 
-A static website for GitHub Pages. No build step, package installation, paid services or API keys are required.
+Static HTML/CSS/JavaScript portfolio for GitHub Pages. No build step or API keys.
 
-## Preview
+## Publish or update
 
-Open index.html in a browser, or serve this folder with `python -m http.server 8000` and open http://localhost:8000.
+Upload index.html, styles.css, script.js, the entire assets folder and the entire downloads folder to the root of thomasdeschulthess.github.io. Preserve the two folder names and their contents. Commit the changes. GitHub Pages uses main / (root).
 
-## Content
+## Project content
 
-All nine CV projects are in script.js, including the highlighted items. The profile uses the requested aerospace engineering internship sentence. Education, subject results, skills, leadership, languages, citizenship and interests are in index.html.
+Project details, group roles, supporting figures, resource links and the corrected materials results are in script.js. General biography and contact information are in index.html. Styling is in styles.css.
 
-The turbine and model wind tunnel use supplied photographs, the light aircraft project uses the supplied RAeS logo, and the About section includes the supplied portrait. Remaining project diagrams are explicitly labelled illustrations, not actual photographs or simulation outputs. There is no CV download yet: the supplied PDF contains application-specific highlighting and an unfinished profile sentence.
+## Public supporting files
 
-## Publish to GitHub Pages
+- Beam and pipe-flow reports: student identifiers, PDF annotations, private source links and author metadata removed from public copies. Original reports remain unchanged outside this website folder.
+- Lifting-line code: original main program, supplied hshoe helper, airfoil data and usage notes. The original polar does not document its Reynolds number.
+- Membrane coursework: sanitized live script, a code-only export and attribution/usage notes. Supplied teaching examples retain attribution.
+- Turbine team presentation (PDF): participant names, presenter notes, comment text, contact details and collaboration author metadata removed. Embedded workbooks are also sanitized. This is credited as a team presentation.
+- Aircraft group report and materials PDF: excluded.
 
-1. Create a GitHub account and choose a username. Your free default site address will be https://USERNAME.github.io.
-2. Create a **public** repository named exactly USERNAME.github.io (replace USERNAME with your actual username).
-3. Upload index.html, styles.css, script.js and the assets folder to the root of that repository. Keep the images inside assets; do not upload the enclosing portfolio folder.
-4. Open repository Settings → Pages. Under Build and deployment, choose Deploy from a branch, select main and / (root), then Save.
-5. Wait for the deployment to finish. The Pages settings page will show the published address.
+The membrane mode image is a reference illustration from the supplied coursework, as stated in the expanded project view. The aircraft photograph has been AI-cleaned for glare. Supporting report figures are extracted without altering their data.
 
-GitHub changes its interface occasionally; verify these steps against the official documentation when publishing. See https://docs.github.com/en/pages/quickstart.
+## Local preview
 
-A custom domain is optional and purchased separately. The default github.io address is enough to share on applications.
-
-## Before publishing
-
-Review the content and contact information. The current page includes your email address, phone number, LinkedIn and citizenship from the CV. Add your real project photographs and optionally a portrait. Add a clean, tailored PDF if you want a CV download.
-
-## Editing
-
-- Profile, education, skills, experience and contact: index.html
-- Project titles, dates and full descriptions: projects array in script.js
-- Colours, typography, responsive layouts: styles.css
-
-The site uses system fonts with no external font requests. The project gallery needs JavaScript; all other sections are plain HTML. Project dialogs support Escape, keyboard focus and a close button. Motion respects reduced-motion settings. No analytics or cookies are added.
+Open index.html directly, or run python -m http.server 8000 in this folder.
