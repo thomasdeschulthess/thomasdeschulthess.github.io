@@ -35,7 +35,7 @@ const projectImages = {
  flywheel: {src:'assets/icss-logo.png',alt:'Imperial College Space Society logo',logo:true},
  beam: {src:'assets/beam-simulation.png',alt:'Finite element beam simulation showing a meshed, deflected beam with blue and teal contours'},
  turbine: {src:'assets/turbine-blades.jpg',alt:'Manufactured wooden wind turbine blades and metal hub in the workshop'},
- tunnel: {src:'assets/wind-tunnel.jpg',alt:'Home-built transparent wind tunnel with an airfoil, flow straightener and fan'},
+ tunnel: {src:'assets/wind-tunnel-cleaned.png',alt:'Home-built transparent wind tunnel with an airfoil, flow straightener and fan'},
  engine: {src:'assets/raes-logo.webp',alt:'Royal Aeronautical Society logo',logo:true}
 };
 const projectContent = {
@@ -278,7 +278,7 @@ const projectContent = {
 };
 projects.forEach(project=>Object.assign(project,projectContent[project.visual]||{}));
 Object.entries(projectContent).forEach(([key,value])=>{if(value.image)projectImages[key]=value.image;});
-const projectOrder = ['turbine','wing','engine','tunnel','beam','membrane','flywheel','aircraft','cfd','materials'];
+const projectOrder = ['turbine','tunnel','beam','aircraft','wing','cfd','engine','membrane','flywheel','materials'];
 projects.sort((a,b)=>projectOrder.indexOf(a.visual)-projectOrder.indexOf(b.visual));
 const gallery=document.getElementById('project-grid');
 projects.forEach((project,index)=>{
