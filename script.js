@@ -1,6 +1,7 @@
 const projects = [
  {title:'Wind turbine design, manufacture & test',context:'Imperial College London',date:'2026',type:'STRUCTURES / MANUFACTURING',visual:'turbine',label:'1ST / 24 TEAMS',summary:'Competition-winning design. Structural modelling, manufacture and wind-tunnel testing in a six-person team.',tags:'MATLAB · Structural analysis · Manufacturing · Testing',details:["Won Imperial’s wind turbine competition against 23 other teams, as part of a six-person team assessed on technical performance, manufacturing cost and presentation.",'Led structural analysis, developing a MATLAB model of blade stresses and deflection to guide spanwise chord adjustments, improving aerodynamic performance while maintaining the selected structural safety factor.','Achieved the second-highest power output (32 W at 10 m/s) at the second-lowest manufacturing cost (£15), meeting the 30–36 W design target.']},
- {title:'Computational modelling & validation',context:'Imperial College London',date:'2026',type:'FEA / CFD / VALIDATION',visual:'simulation',label:'SIMULATION ↔ EXPERIMENT',summary:'Beam deflection and pipe-flow simulations, checked against theory and experimental measurements.',tags:'Abaqus · STAR-CCM+ · Mesh convergence · Validation',details:['Modelled beam deflection in Abaqus using 1D/3D FEA and mesh convergence studies; FEA and beam-theory load–deflection gradients differed by just 0.17%. Benchmarked results against experiments.','Built and refined STAR-CCM+ pipe-flow simulations, predicting pressure gradients and friction coefficients within 1.1% and 3% of theory, respectively. CFD and theoretical predictions fell within experimental uncertainty.']},
+ {"title": "Beam analysis & validation", "context": "Imperial College London", "date": "2026", "type": "STRUCTURES / FEA", "visual": "beam", "summary": "Abaqus beam models compared with analytical predictions and experimental displacement and strain measurements.", "tags": "Abaqus · FEA · Beam theory · Mesh refinement", "details": []},
+ {"title": "Pipe-flow CFD & validation", "context": "Imperial College London", "date": "2026", "type": "FLUID MECHANICS / CFD", "visual": "cfd", "summary": "Laminar pipe-flow simulations compared with theory and experiment at Re = 1,377.", "tags": "STAR-CCM+ · CFD · Pipe flow · Experimental validation", "details": []},
  {title:'Aircraft performance & stability',context:'Imperial College London',date:'2025–2026',type:'AERODYNAMICS / FLIGHT',visual:'aircraft',label:'LIFT / DRAG / TRIM',summary:'Investigating aircraft behaviour through wind-tunnel testing and flight simulation.',tags:'Wind-tunnel testing · Flight simulation · Stability',details:['Analysed aircraft lift, drag, trim and stall behaviour through wind-tunnel testing and flight simulation; estimated stability parameters and demonstrated broad agreement with aerodynamic theory.']},
  {title:'Model wind tunnel',context:'Independent project',date:'2024; revisited 2026',type:'BUILD / TEST / ANALYSE',visual:'tunnel',label:'INDEPENDENT PROJECT',summary:'A self-built wind tunnel, airfoil measurements and a later comparison with XFOIL predictions.',tags:'Python · XFOIL · Experimental testing',details:['Built a model wind tunnel and measured lift curves for several unidentified airfoils; later digitised their profiles to identify them and compared measurements with XFOIL predictions using Python, highlighting calibration and Reynolds-number limitations.']},
  {title:'Lifting-line model',context:'MATLAB coursework',date:'2026',type:'NUMERICAL MODELLING',visual:'wing',label:'HORSESHOE-VORTEX SOLVER',summary:'Predicting wing lift and drag with a horseshoe-vortex lifting-line solver.',tags:'MATLAB · Lifting-line theory · Convergence',details:['Developed a horseshoe-vortex lifting-line solver to predict spanwise lift and wing lift and drag coefficients; assessed convergence using 10–100 panels and compared predictions with published experimental data.']},
@@ -26,12 +27,13 @@ function illustration(kind,index){
  return `<svg viewBox="0 0 600 440" aria-hidden="true" focusable="false"><defs><radialGradient id="g${index}"><stop stop-color="#303033"/><stop offset="1" stop-color="#1b1b1e"/></radialGradient></defs><path fill="url(#g${index})" d="M0 0H600V440H0Z"/><g stroke="#808087" stroke-width=".5" opacity=".12">${grid}</g><g fill="none" stroke="#c4c4cc" stroke-width="1.5" stroke-linejoin="round">${drawings[kind]}</g></svg>`;
 }
 const projectImages = {
+ cfd: {src:'assets/pipe-flow-cfd.png',alt:'STAR-CCM+ pipe-flow velocity-magnitude contours with higher speeds at the centre and lower speeds near the wall'},
  aircraft: {src:'assets/aircraft-performance-cleaned.png',alt:'Business-jet model with wool tufts on its wing mounted in the wind tunnel'},
  materials: {src:'assets/materials-tensile-test.jpg',alt:'Yellow tensile-test specimen held between the grips of a materials testing machine'},
  wing: {src:'assets/lifting-line-panel-comparison.png',alt:'Spanwise lift distributions comparing lifting-line models with 10, 20, 50 and 100 panels'},
  membrane: {src:'assets/membrane-modes.png',alt:'Nine circular membrane vibration modes shown as orange three-dimensional mesh surfaces'},
  flywheel: {src:'assets/icss-logo.png',alt:'Imperial College Space Society logo',logo:true},
- simulation: {src:'assets/beam-simulation.png',alt:'Finite element beam simulation showing a meshed, deflected beam with blue and teal contours'},
+ beam: {src:'assets/beam-simulation.png',alt:'Finite element beam simulation showing a meshed, deflected beam with blue and teal contours'},
  turbine: {src:'assets/turbine-blades.jpg',alt:'Manufactured wooden wind turbine blades and metal hub in the workshop'},
  tunnel: {src:'assets/wind-tunnel.jpg',alt:'Home-built transparent wind tunnel with an airfoil, flow straightener and fan'},
  engine: {src:'assets/raes-logo.webp',alt:'Royal Aeronautical Society logo',logo:true}
@@ -79,61 +81,6 @@ const projectContent = {
       "alt": "MATLAB blade-surface stress maps for maximum-RPM and maximum-power load cases"
     },
     "imageCaption": "Blade-surface stress predictions from slide 21 of the team presentation."
-  },
-  "simulation": {
-    "role": "Two laboratory investigations comparing analytical predictions, numerical models and experimental measurements.",
-    "details": [],
-    "sections": [
-      {
-        "heading": "Beam analysis · Abaqus FEA",
-        "bullets": [
-          "Modelled a statically indeterminate stainless-steel beam using 1D B23 beam elements and 3D C3D8R continuum elements, comparing their responses with Euler–Bernoulli theory and laboratory measurements under loads up to 40 N.",
-          "Conducted mesh-refinement studies, examining nodal and interpolated displacements and the importance of through-thickness mesh resolution in the 3D model.",
-          "The 1D FEA and theoretical load–deflection gradients differed by 0.17%. The predicted gradient differed from the experimental result by approximately 3.9%.",
-          "Investigated the larger strain discrepancy near a support (29%, compared with 2.1% at the more distant gauge), discussing local contact effects and idealised boundary conditions as possible causes.",
-          "Recognised that the 3D solution had not fully converged within the available software limits. Used the 1D model for the subsequent comparison."
-        ]
-      },
-      {
-        "heading": "Pipe-flow analysis · STAR-CCM+ CFD",
-        "bullets": [
-          "Used experimental measurements to define a laminar pipe-flow case at Re = 1,377 and a mean velocity of 2.21 m/s.",
-          "Built a steady, incompressible, axisymmetric simulation and compared two mesh resolutions using velocity profiles, wall gradients, pressure variation and residual histories.",
-          "Predicted the pressure-coefficient gradient within 1.1% of theory and the skin-friction coefficient within approximately 3%. Both predictions lay within the reported experimental uncertainty.",
-          "Investigated entrance effects, pressure-reference offsets and measurement uncertainty when explaining differences between the analytical, numerical and experimental results."
-        ]
-      }
-    ],
-    "gallery": [
-      {
-        "src": "assets/beam-mesh-convergence.png",
-        "caption": "Beam mesh-refinement study, showing the different behaviour of 1D and 3D formulations."
-      },
-      {
-        "src": "assets/beam-validation.png",
-        "caption": "Beam load–displacement comparison with experimental uncertainty."
-      },
-      {
-        "src": "assets/pipe-velocity-validation.png",
-        "caption": "CFD radial velocity profiles compared with the analytical laminar-flow solution."
-      },
-      {
-        "src": "assets/pipe-pressure-validation.png",
-        "caption": "Pressure-coefficient comparison between experiment, theory and two CFD meshes."
-      }
-    ],
-    "resources": [
-      {
-        "href": "downloads/beam-analysis-report.pdf",
-        "label": "Beam analysis report",
-        "type": "PDF"
-      },
-      {
-        "href": "downloads/pipe-flow-report.pdf",
-        "label": "Pipe-flow report",
-        "type": "PDF"
-      }
-    ]
   },
   "aircraft": {
     "role": "Group laboratory project combining wind-tunnel testing and flight simulation. My contributions covered lift-curve analysis and the wind-tunnel stability analysis, with shared work on drag, trim and stall interpretation.",
@@ -273,11 +220,65 @@ const projectContent = {
         "caption": "Stress–strain response from the separate strain-gauge loading/unloading investigation."
       }
     ]
+  },
+  "beam": {
+    "role": "Laboratory investigation comparing Euler–Bernoulli theory, Abaqus finite element models and experimental beam measurements.",
+    "details": [
+      "Modelled a statically indeterminate stainless-steel beam using 1D B23 beam elements and 3D C3D8R continuum elements, comparing their responses with Euler–Bernoulli theory and laboratory measurements under loads up to 40 N.",
+      "Conducted mesh-refinement studies, examining nodal and interpolated displacements and the importance of through-thickness mesh resolution in the 3D model.",
+      "The 1D FEA and theoretical load–deflection gradients differed by 0.17%. The predicted gradient differed from the experimental result by approximately 3.9%.",
+      "Investigated the larger strain discrepancy near a support (29%, compared with 2.1% at the more distant gauge), discussing local contact effects and idealised boundary conditions as possible causes.",
+      "Recognised that the 3D solution had not fully converged within the available software limits. Used the 1D model for the subsequent comparison."
+    ],
+    "gallery": [
+      {
+        "src": "assets/beam-mesh-convergence.png",
+        "caption": "Beam mesh-refinement study, showing the different behaviour of 1D and 3D formulations."
+      },
+      {
+        "src": "assets/beam-validation.png",
+        "caption": "Beam load–displacement comparison with experimental uncertainty."
+      }
+    ],
+    "resources": [
+      {
+        "href": "downloads/beam-analysis-report.pdf",
+        "label": "Beam analysis report",
+        "type": "PDF"
+      }
+    ]
+  },
+  "cfd": {
+    "role": "Laboratory investigation comparing analytical pipe-flow predictions, STAR-CCM+ CFD and experimental measurements.",
+    "details": [
+      "Used experimental measurements to define a laminar pipe-flow case at Re = 1,377 and a mean velocity of 2.21 m/s.",
+      "Built a steady, incompressible, axisymmetric simulation and compared two mesh resolutions using velocity profiles, wall gradients, pressure variation and residual histories.",
+      "Predicted the pressure-coefficient gradient within 1.1% of theory and the skin-friction coefficient within approximately 3%. Both predictions lay within the reported experimental uncertainty.",
+      "Investigated entrance effects, pressure-reference offsets and measurement uncertainty when explaining differences between the analytical, numerical and experimental results."
+    ],
+    "gallery": [
+      {
+        "src": "assets/pipe-velocity-validation.png",
+        "caption": "CFD radial velocity profiles compared with the analytical laminar-flow solution."
+      },
+      {
+        "src": "assets/pipe-pressure-validation.png",
+        "caption": "Pressure-coefficient comparison between experiment, theory and two CFD meshes."
+      }
+    ],
+    "resources": [
+      {
+        "href": "downloads/pipe-flow-report.pdf",
+        "label": "Pipe-flow report",
+        "type": "PDF"
+      }
+    ],
+    "imageCaption": "STAR-CCM+ velocity-magnitude contours for the pipe-flow model."
   }
 };
 projects.forEach(project=>Object.assign(project,projectContent[project.visual]||{}));
 Object.entries(projectContent).forEach(([key,value])=>{if(value.image)projectImages[key]=value.image;});
-const projectOrder = ['turbine','tunnel','simulation','aircraft','wing','engine','flywheel','membrane','materials'];
+const projectOrder = ['turbine','wing','engine','tunnel','beam','membrane','flywheel','aircraft','cfd','materials'];
 projects.sort((a,b)=>projectOrder.indexOf(a.visual)-projectOrder.indexOf(b.visual));
 const gallery=document.getElementById('project-grid');
 projects.forEach((project,index)=>{

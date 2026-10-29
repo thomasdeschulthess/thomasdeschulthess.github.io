@@ -8,7 +8,7 @@ Upload index.html, styles.css, script.js, the entire assets folder and the entir
 
 ## Project content
 
-Project details, group roles, supporting figures, resource links and the corrected materials results are in script.js. General biography and contact information are in index.html. Styling is in styles.css.
+Beam FEA and pipe-flow CFD have separate project cards, descriptions, figures and report links. Project details, group roles, supporting figures, resource links and the corrected materials results are in script.js. General biography and contact information are in index.html. Styling is in styles.css.
 
 ## Public supporting files
 
