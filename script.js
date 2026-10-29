@@ -13,22 +13,37 @@ const projects = [
 function illustration(kind,index){
  const grid=Array.from({length:15},(_,i)=>`<path d="M${i*40} 0V440M0 ${i*40}H600"/>`).join('');
  const drawings={
- turbine:`<circle cx="300" cy="190" r="120" stroke-dasharray="4 8" opacity=".3"/><path d="M292 210L280 360H320L308 210"/><g transform="translate(300 190)">${[0,120,240].map(a=>`<path transform="rotate(${a})" d="M0 0Q-35-55-12-145Q9-162 11-127L12-18Z" fill="#93ad73" fill-opacity=".25"/>`).join('')}</g><circle cx="300" cy="190" r="15" fill="#d4ed9b"/><path d="M215 365H385M100 190H150M450 190H500"/>`,
- simulation:Array.from({length:15},(_,i)=>`<path d="M75 ${130+i*12}C210 ${105+i*14} 350 ${195+i*9} 525 ${145+i*12}" stroke="hsl(${80+i*7} 50% ${38+i*2}%)"/>`).join('')+`<path d="M75 115V325M525 115V325" stroke-dasharray="4 5"/>`,
- aircraft:`<g transform="translate(300 215) rotate(-18)"><path d="M0-150L15-60 170 40 170 60 15 15 12 100 60 135 60 150 0 130-60 150-60 135-12 100-15 15-170 60-170 40-15-60Z" fill="#77975c" fill-opacity=".18"/><path d="M0-130V130M-160 46H160" stroke-dasharray="4 6"/></g>`,
- tunnel:`<path d="M90 130L230 170H390L510 135V305L390 270H230L90 310Z" fill="#77975c" fill-opacity=".1"/><path d="M90 130V310M230 170V270M390 170V270M510 135V305M90 220H510" stroke-dasharray="4 6"/><path d="M265 224Q300 190 350 222Q300 215 265 224Z" fill="#d4ed9b"/><path d="M110 195H200M110 245H200M410 195H490M410 245H490"/>`,
- wing:`<g transform="translate(80 105) skewY(12)"><path d="M0 0H440L380 170H60Z" fill="#77975c" fill-opacity=".12"/>${Array.from({length:15},(_,i)=>`<path d="M${i*29} 0L${60+i*21} 170V245"/>`).join('')}<path d="M30 85H410" stroke="#d4ed9b" stroke-width="3"/></g>`,
+ turbine:`<circle cx="300" cy="190" r="120" stroke-dasharray="4 8" opacity=".3"/><path d="M292 210L280 360H320L308 210"/><g transform="translate(300 190)">${[0,120,240].map(a=>`<path transform="rotate(${a})" d="M0 0Q-35-55-12-145Q9-162 11-127L12-18Z" fill="#a0a0a6" fill-opacity=".25"/>`).join('')}</g><circle cx="300" cy="190" r="15" fill="#e1e1e5"/><path d="M215 365H385M100 190H150M450 190H500"/>`,
+ simulation:Array.from({length:15},(_,i)=>`<path d="M75 ${130+i*12}C210 ${105+i*14} 350 ${195+i*9} 525 ${145+i*12}" stroke="hsl(240 3% ${38+i*3}%)"/>`).join('')+`<path d="M75 115V325M525 115V325" stroke-dasharray="4 5"/>`,
+ aircraft:`<g transform="translate(300 215) rotate(-18)"><path d="M0-150L15-60 170 40 170 60 15 15 12 100 60 135 60 150 0 130-60 150-60 135-12 100-15 15-170 60-170 40-15-60Z" fill="#8c8c94" fill-opacity=".18"/><path d="M0-130V130M-160 46H160" stroke-dasharray="4 6"/></g>`,
+ tunnel:`<path d="M90 130L230 170H390L510 135V305L390 270H230L90 310Z" fill="#8c8c94" fill-opacity=".1"/><path d="M90 130V310M230 170V270M390 170V270M510 135V305M90 220H510" stroke-dasharray="4 6"/><path d="M265 224Q300 190 350 222Q300 215 265 224Z" fill="#e1e1e5"/><path d="M110 195H200M110 245H200M410 195H490M410 245H490"/>`,
+ wing:`<g transform="translate(80 105) skewY(12)"><path d="M0 0H440L380 170H60Z" fill="#8c8c94" fill-opacity=".12"/>${Array.from({length:15},(_,i)=>`<path d="M${i*29} 0L${60+i*21} 170V245"/>`).join('')}<path d="M30 85H410" stroke="#e1e1e5" stroke-width="3"/></g>`,
  membrane:`<g transform="translate(300 220)">${Array.from({length:10},(_,i)=>`<ellipse rx="${20+i*14}" ry="${12+i*9}" transform="rotate(${i*5})"/>`).join('')}<path d="M-170 0H170M0-140V140" stroke-dasharray="4 5"/></g>`,
- engine:`<g transform="translate(300 220)"><circle r="120"/><circle r="95"/><circle r="27" fill="#77975c" fill-opacity=".4"/>${Array.from({length:12},(_,i)=>`<path transform="rotate(${i*30})" d="M0-30Q50-65 22-90L0-95Q10-65-10-30Z" fill="#77975c" fill-opacity=".2"/>`).join('')}<path d="M-170 0H170M0-155V155" stroke-dasharray="3 7"/></g>`,
- flywheel:`<g transform="translate(300 220) rotate(-25)"><path d="M-125-100H125V100H-125Z"/><ellipse rx="100" ry="76"/><ellipse rx="75" ry="57"/><ellipse rx="24" ry="18" fill="#d4ed9b" fill-opacity=".4"/><path d="M-115-90L115 90M115-90L-115 90" stroke-dasharray="5 5"/>${[-1,1].flatMap(x=>[-1,1].map(y=>`<circle cx="${x*110}" cy="${y*85}" r="6"/>`)).join('')}</g>`,
- materials:`<path d="M255 80H345V150L320 185V275L345 310V365H255V310L280 275V185L255 150Z" fill="#77975c" fill-opacity=".25"/><path d="M300 55V120M300 325V390M285 70L300 55 315 70M285 375L300 390 315 375"/><path d="M110 300V160M110 300H210M120 280Q160 190 195 200" opacity=".5"/>`
+ engine:`<g transform="translate(300 220)"><circle r="120"/><circle r="95"/><circle r="27" fill="#8c8c94" fill-opacity=".4"/>${Array.from({length:12},(_,i)=>`<path transform="rotate(${i*30})" d="M0-30Q50-65 22-90L0-95Q10-65-10-30Z" fill="#8c8c94" fill-opacity=".2"/>`).join('')}<path d="M-170 0H170M0-155V155" stroke-dasharray="3 7"/></g>`,
+ flywheel:`<g transform="translate(300 220) rotate(-25)"><path d="M-125-100H125V100H-125Z"/><ellipse rx="100" ry="76"/><ellipse rx="75" ry="57"/><ellipse rx="24" ry="18" fill="#e1e1e5" fill-opacity=".4"/><path d="M-115-90L115 90M115-90L-115 90" stroke-dasharray="5 5"/>${[-1,1].flatMap(x=>[-1,1].map(y=>`<circle cx="${x*110}" cy="${y*85}" r="6"/>`)).join('')}</g>`,
+ materials:`<path d="M255 80H345V150L320 185V275L345 310V365H255V310L280 275V185L255 150Z" fill="#8c8c94" fill-opacity=".25"/><path d="M300 55V120M300 325V390M285 70L300 55 315 70M285 375L300 390 315 375"/><path d="M110 300V160M110 300H210M120 280Q160 190 195 200" opacity=".5"/>`
  };
- return `<svg viewBox="0 0 600 440" aria-hidden="true" focusable="false"><defs><radialGradient id="g${index}"><stop stop-color="#2e402b"/><stop offset="1" stop-color="#161e18"/></radialGradient></defs><path fill="url(#g${index})" d="M0 0H600V440H0Z"/><g stroke="#71836a" stroke-width=".5" opacity=".12">${grid}</g><g fill="none" stroke="#b0cf8e" stroke-width="1.5" stroke-linejoin="round">${drawings[kind]}</g></svg>`;
+ return `<svg viewBox="0 0 600 440" aria-hidden="true" focusable="false"><defs><radialGradient id="g${index}"><stop stop-color="#303033"/><stop offset="1" stop-color="#1b1b1e"/></radialGradient></defs><path fill="url(#g${index})" d="M0 0H600V440H0Z"/><g stroke="#808087" stroke-width=".5" opacity=".12">${grid}</g><g fill="none" stroke="#c4c4cc" stroke-width="1.5" stroke-linejoin="round">${drawings[kind]}</g></svg>`;
 }
+const projectImages = {
+ aircraft: {src:'assets/aircraft-lab-work-cleaned.png',alt:'Hands-on work on the tufted wing of a business-jet model in the wind tunnel'},
+ materials: {src:'assets/materials-tensile-test.jpg',alt:'Yellow tensile-test specimen held between the grips of a materials testing machine'},
+ wing: {src:'assets/lifting-line-panel-comparison.png',alt:'Spanwise lift distributions comparing lifting-line models with 10, 20, 50 and 100 panels'},
+ membrane: {src:'assets/membrane-modes.png',alt:'Nine circular membrane vibration modes shown as orange three-dimensional mesh surfaces'},
+ flywheel: {src:'assets/icss-logo.png',alt:'Imperial College Space Society logo',logo:true},
+ simulation: {src:'assets/beam-simulation.png',alt:'Finite element beam simulation showing a meshed, deflected beam with blue and teal contours'},
+ turbine: {src:'assets/turbine-blades.jpg',alt:'Manufactured wooden wind turbine blades and metal hub in the workshop'},
+ tunnel: {src:'assets/wind-tunnel.jpg',alt:'Home-built transparent wind tunnel with an airfoil, flow straightener and fan'},
+ engine: {src:'assets/raes-logo.webp',alt:'Royal Aeronautical Society logo',logo:true}
+};
+const projectOrder = ['turbine','tunnel','simulation','aircraft','wing','engine','flywheel','membrane','materials'];
+projects.sort((a,b)=>projectOrder.indexOf(a.visual)-projectOrder.indexOf(b.visual));
 const gallery=document.getElementById('project-grid');
 projects.forEach((project,index)=>{
- const card=document.createElement('article');card.className='project-card';
- card.innerHTML=`<button class="project-button" aria-haspopup="dialog" aria-label="Explore ${project.title}"><div class="project-visual">${illustration(project.visual,index)}<div class="visual-top"><span>${String(index+1).padStart(2,'0')} / ${project.type}</span><span>${project.date}</span></div><span class="visual-caption">ILLUSTRATION · ${project.label}</span><div class="project-overlay"><p>${project.summary}</p><span>Explore project ↗</span></div></div><div class="project-title"><h3>${project.title}</h3><span aria-hidden="true">↗</span></div><p class="project-meta">${project.context}</p></button>`;
+ const card=document.createElement('article');card.className='project-card card-'+project.visual;
+ const image=projectImages[project.visual];
+ const media=image ? `<img class="project-photo ${image.logo?'project-logo':''}" src="${image.src}" alt="${image.alt}" loading="lazy">` : illustration(project.visual,index);
+ card.innerHTML=`<button class="project-button" aria-haspopup="dialog" aria-label="Explore ${project.title}"><div class="project-visual">${media}<div class="visual-top"><span>${project.type}</span><span>${project.date}</span></div>${image ? '' : '<span class="visual-caption">ILLUSTRATION</span>'}<div class="project-overlay"><p>${project.summary}</p><span>View details</span></div></div><div class="project-title"><h3>${project.title}</h3><span aria-hidden="true">↗</span></div><p class="project-meta">${project.context}</p></button>`;
  card.querySelector('button').addEventListener('click',()=>openProject(project));gallery.append(card);
 });
 const dialog=document.getElementById('project-dialog');
@@ -37,6 +52,8 @@ function openProject(project){
  const title=document.createElement('h2');title.id='dialog-title';title.textContent=project.title;
  const meta=document.createElement('p');meta.className='project-meta';meta.textContent=`${project.context} · ${project.date}`;
  const list=document.createElement('ul');project.details.forEach(text=>{const li=document.createElement('li');li.textContent=text;list.append(li);});
+ const image=projectImages[project.visual];
+ if(image){const photo=document.createElement('img');photo.src=image.src;photo.alt=image.alt;photo.className='dialog-photo'+(image.logo?' dialog-logo':'');content.append(photo);}
  const tags=document.createElement('p');tags.className='tags';tags.textContent=project.tags;content.append(title,meta,list,tags);
  dialog.showModal();document.body.style.overflow='hidden';
 }
