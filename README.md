@@ -23,3 +23,10 @@ The membrane mode image is a reference illustration from the supplied coursework
 ## Local preview
 
 Open index.html directly, or run python -m http.server 8000 in this folder.
+
+## CV content update — 31 October 2026
+
+Compared the general and IBM CVs. Added engine dataset preparation, the 1,665-profile airfoil comparison, turbine code integration and presentation, ongoing numerical-methods work, Python libraries and AI tools, fuller business and expedition responsibilities, and interests. Corrected camp dates to June–August 2023 and August 2024. Project results, limitations, supporting files and team attribution are retained.
+
+Validated all ten project dialogs at desktop (1440 px) and mobile (390 px) widths, with no JavaScript errors or horizontal overflow. This folder is a local publishing copy; upload its contents using the instructions above.
+

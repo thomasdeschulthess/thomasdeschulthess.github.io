@@ -3,10 +3,10 @@ const projects = [
  {"title": "Beam analysis & validation", "context": "Imperial College London", "date": "2026", "type": "STRUCTURES / FEA", "visual": "beam", "summary": "Abaqus beam models compared with analytical predictions and experimental displacement and strain measurements.", "tags": "Abaqus · FEA · Beam theory · Mesh refinement", "details": []},
  {"title": "Pipe-flow CFD & validation", "context": "Imperial College London", "date": "2026", "type": "FLUID MECHANICS / CFD", "visual": "cfd", "summary": "Laminar pipe-flow simulations compared with theory and experiment at Re = 1,377.", "tags": "STAR-CCM+ · CFD · Pipe flow · Experimental validation", "details": []},
  {title:'Aircraft performance & stability',context:'Imperial College London',date:'2025–2026',type:'AERODYNAMICS / FLIGHT',visual:'aircraft',label:'LIFT / DRAG / TRIM',summary:'Investigating aircraft behaviour through wind-tunnel testing and flight simulation.',tags:'Wind-tunnel testing · Flight simulation · Stability',details:['Analysed aircraft lift, drag, trim and stall behaviour through wind-tunnel testing and flight simulation; estimated stability parameters and demonstrated broad agreement with aerodynamic theory.']},
- {title:'Model wind tunnel',context:'Independent project',date:'2024; revisited 2026',type:'BUILD / TEST / ANALYSE',visual:'tunnel',label:'INDEPENDENT PROJECT',summary:'A self-built wind tunnel, airfoil measurements and a later comparison with XFOIL predictions.',tags:'Python · XFOIL · Experimental testing',details:['Built a model wind tunnel and measured lift curves for several unidentified airfoils; later digitised their profiles to identify them and compared measurements with XFOIL predictions using Python, highlighting calibration and Reynolds-number limitations.']},
+ {title:'Model wind tunnel',context:'Independent project',date:'2024; revisited 2026',type:'BUILD / TEST / ANALYSE',visual:'tunnel',label:'INDEPENDENT PROJECT',summary:'A self-built wind tunnel, Python analysis and identification of unknown airfoils against 1,665 reference profiles.',tags:'Python · XFOIL · Experimental testing',details:['Built a model wind tunnel and measured lift curves for several unidentified airfoils; later digitised their profiles to identify them and compared measurements with XFOIL predictions using Python, highlighting calibration and Reynolds-number limitations.']},
  {title:'Lifting-line model',context:'MATLAB coursework',date:'2026',type:'NUMERICAL MODELLING',visual:'wing',label:'HORSESHOE-VORTEX SOLVER',summary:'Predicting wing lift and drag with a horseshoe-vortex lifting-line solver.',tags:'MATLAB · Lifting-line theory · Convergence',details:['Developed a horseshoe-vortex lifting-line solver to predict spanwise lift and wing lift and drag coefficients; assessed convergence using 10–100 panels and compared predictions with published experimental data.']},
  {title:'Membrane oscillations',context:'MATLAB coursework',date:'2026',type:'NUMERICAL METHODS',visual:'membrane',label:'VIBRATION / CONVERGENCE',summary:'Circular-membrane vibration, modelled with custom numerical methods and benchmarked against MATLAB routines.',tags:'MATLAB · Numerical methods · Vibration',details:['Modelled circular-membrane vibration using custom numerical methods, benchmarking accuracy and convergence against MATLAB routines.']},
- {title:'Light aircraft design',context:'RAeS Light Aircraft Design Competition · Independent team project',date:'2026–present',type:'PROPULSION / AIRCRAFT DESIGN',visual:'engine',label:'IN PROGRESS',summary:'Propulsion work within a newly established six-person team designing a light trainer aircraft.',tags:'MATLAB · Propulsion · Engine selection · Team design',details:['Recently established a six-person team to design a light trainer aircraft for the 2027 competition; responsible for propulsion, with initial work including a MATLAB tool to compare candidate engines using performance data.']},
+ {title:'Light aircraft design & engine data analysis',context:'RAeS Light Aircraft Design Competition · Independent team project',date:'2026–present',type:'PROPULSION / AIRCRAFT DESIGN',visual:'engine',label:'IN PROGRESS',summary:'Python engine datasets and MATLAB performance comparisons for a six-person light trainer aircraft design team.',tags:'Python · MATLAB · Data analysis · Propulsion · Engine selection',details:['Recently established a six-person team to design a light trainer aircraft for the 2027 competition; responsible for propulsion, with initial work including a MATLAB tool to compare candidate engines using performance data.']},
  {title:'Satellite flywheel structures',context:'Imperial College Space Society (ICSS)',date:'2026–present',type:'MECHANICAL DESIGN / STRUCTURES',visual:'flywheel',label:'IN PROGRESS',summary:'Structures team member working on a flywheel system to demonstrate satellite attitude control.',tags:'Mechanical design · Structural analysis · Attitude control',details:['Structures team member developing a flywheel system to demonstrate satellite attitude control, with a focus on mechanical design and structural analysis.']},
  {title:'Materials characterisation',context:'Imperial College London',date:'2025',type:'MATERIALS / TESTING',visual:'materials',label:'ALUMINIUM / POLYMERS',summary:'Exploring material behaviour through tensile, strain-gauge and Vickers hardness testing.',tags:'Tensile testing · Strain gauges · Vickers hardness',details:['Characterised aluminium and polymer behaviour through tensile, strain-gauge and Vickers hardness testing.']}
 ];
@@ -45,6 +45,8 @@ const projectContent = {
       "Designed, manufactured and tested a two-bladed plywood turbine as part of a six-person team, balancing the 30–36 W power target against manufacturing cost and structural requirements.",
       "Developed a MATLAB structural model using distributed aerodynamic loads, spanwise section properties and asymmetric bending to predict surface stresses and blade deflection. Included centrifugal stress in the combined stress assessment.",
       "Used the structural predictions to guide spanwise chord adjustments and checked the model against simplified cantilever hand calculations.",
+      "Helped integrate teammates’ code and analysis, translating the combined findings into design improvements that balanced aerodynamic performance and structural safety.",
+      "Presented the design and prototype results at a simulated client technical meeting as part of a team ranked joint-first for presentation.",
       "The team manufactured the blades from laser-cut birch-plywood laminations, bonded with PVA, then shaped, sanded and varnished them.",
       "Won the competition against 23 other teams. The tested turbine produced 32 W at 10 m/s at a manufacturing cost of £15: the second-highest power output and second-lowest manufacturing cost."
     ],
@@ -98,8 +100,8 @@ const projectContent = {
     "details": [
       "Built a small wind tunnel to investigate lift generation using a fan-driven transparent test section and a flow straightener.",
       "Measured lift curves for several initially unidentified airfoil sections.",
-      "Revisited the project by digitising the profiles to identify the airfoils and compare their geometry.",
-      "Used Python to compare the measured lift curves with XFOIL predictions.",
+      "Used Python to convert traced airfoil shapes into structured numerical data, ranking 1,665 reference profiles to identify likely matches for the unknown sections.",
+      "Analysed repeated lift measurements in Python and compared the measured lift curves with XFOIL predictions.",
       "Examined calibration and Reynolds-number limitations when interpreting differences between the measured and predicted behaviour."
     ]
   },
@@ -109,7 +111,7 @@ const projectContent = {
       "Developed a MATLAB solver for an unswept tapered wing, including spanwise chord variation and geometric twist.",
       "Iteratively updated circulation and induced downwash, using shape-preserving interpolation of sectional airfoil polar data to calculate the local lift and profile-drag coefficients.",
       "Calculated spanwise lift and integrated sectional contributions to estimate whole-wing lift and drag coefficients.",
-      "Implemented three analysis modes: a single operating point, an angle-of-attack sweep and a comparison of panel counts.",
+      "Used imported airfoil data and automated parameter sweeps, convergence checks and visualisation through three analysis modes: a single operating point, an angle-of-attack sweep and a comparison of panel counts.",
       "Compared 10, 20, 50 and 100 panels, with convergence warnings and automated export of figures and results. The supplied polar does not document its Reynolds number, so these outputs are presented as model results rather than independent experimental validation."
     ],
     "resources": [
@@ -135,6 +137,8 @@ const projectContent = {
   },
   "membrane": {
     "role": "MATLAB numerical-methods coursework using circular-membrane vibration as the application.",
+    "date": "2026–present",
+    "sections": [{"heading": "Ongoing numerical-methods work", "bullets": ["Currently extending the coursework to numerical differentiation and differential equations."]}],
     "summary": "Bessel-function interpolation, numerical integration and root finding, applied to circular-membrane frequencies.",
     "details": [
       "Implemented polynomial interpolation, Lagrange interpolation with a Chebyshev-based node subset, and natural cubic splines for tabulated Bessel-function data.",
@@ -163,9 +167,10 @@ const projectContent = {
   "engine": {
     "role": "Early-stage independent team project for the 2027 RAeS Light Aircraft Design Competition.",
     "details": [
-      "Established a six-person team to develop a light trainer aircraft for the 2027 competition.",
+      "Helped establish a six-person team to develop a light trainer aircraft for the 2027 competition.",
       "Responsible for the propulsion workstream within the team.",
-      "Initial work includes a MATLAB tool to compare candidate engines using performance data. Design and engine selection are in progress."
+      "Used Python to organise engine specifications into structured datasets, recording sources and flagging missing information.",
+      "Currently using MATLAB to compare candidate engines under different operating conditions, informing the team’s assessment of propulsion options. Design and engine selection remain in progress."
     ]
   },
   "flywheel": {

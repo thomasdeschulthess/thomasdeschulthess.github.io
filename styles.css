@@ -87,3 +87,9 @@ dialog{width:min(900px,94vw)}
 }
 /* Retain the full RAeS lettering in the narrower supporting card. */
 .card-engine .project-photo.project-logo{object-fit:contain}
+
+/* Keep each image unchanged; letterboxed space uses the dialog background. */
+.detail-figure img{background:transparent}
+/* Give the transparent ICSS logo a solid white backing in both views. */
+.card-flywheel .project-photo,
+.logo-figure img[src$="icss-logo.png"]{background:#fff}
