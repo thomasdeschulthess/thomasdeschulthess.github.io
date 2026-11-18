@@ -33,7 +33,7 @@ const projectImages = {
  wing: {src:'assets/lifting-line-panel-comparison.png',alt:'Spanwise lift distributions comparing lifting-line models with 10, 20, 50 and 100 panels'},
  membrane: {src:'assets/membrane-modes.png',alt:'Nine circular membrane vibration modes shown as orange three-dimensional mesh surfaces'},
  flywheel: {src:'assets/icss-logo.png',alt:'Imperial College Space Society logo',logo:true},
- beam: {src:'assets/beam-simulation.png',alt:'Abaqus beam simulation showing displacement magnitude contours on the deformed beam'},
+ beam: {src:'assets/beam-displacement.png',alt:'Abaqus beam simulation showing displacement magnitude contours on the deformed beam'},
  turbine: {src:'assets/turbine-blades.jpg',alt:'Manufactured wooden wind turbine blades and metal hub in the workshop'},
  tunnel: {src:'assets/wind-tunnel-cleaned.png',alt:'Home-built transparent wind tunnel with an airfoil, flow straightener and fan'},
  lunahack: {src:'assets/lunahack-cover.png',alt:'LunaHack event cover artwork showing lunar craters and the words LUNA HACK'}
@@ -280,7 +280,7 @@ const projectContent = {
 };
 projects.forEach(project=>Object.assign(project,projectContent[project.visual]||{}));
 Object.entries(projectContent).forEach(([key,value])=>{if(value.image)projectImages[key]=value.image;});
-const projectOrder = ['turbine','tunnel','beam','aircraft','wing','cfd','lunahack','membrane','flywheel','materials'];
+const projectOrder = ['turbine','tunnel','lunahack','aircraft','beam','cfd','wing','materials','membrane','flywheel'];
 projects.sort((a,b)=>projectOrder.indexOf(a.visual)-projectOrder.indexOf(b.visual));
 const gallery=document.getElementById('project-grid');
 projects.forEach((project,index)=>{
@@ -338,3 +338,23 @@ function openProject(project){
 dialog.querySelector('.close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('close',()=>{document.body.style.overflow='';});
 dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+
+// Size each collage tile from its uncropped image and text, rather than fixed heights.
+let collageFrame;
+function layoutCollage(){
+ cancelAnimationFrame(collageFrame);
+ collageFrame=requestAnimationFrame(()=>{
+  const style=getComputedStyle(gallery);
+  const unit=parseFloat(style.gridAutoRows);
+  const gap=parseFloat(style.rowGap);
+  if(!Number.isFinite(unit))return;
+  gallery.querySelectorAll('.project-card').forEach(card=>{
+   const height=card.querySelector('.project-button').getBoundingClientRect().height+2;
+   card.style.gridRowEnd='span '+Math.ceil((height+gap)/(unit+gap));
+  });
+ });
+}
+gallery.querySelectorAll('img').forEach(img=>img.addEventListener('load',layoutCollage));
+new ResizeObserver(layoutCollage).observe(gallery);
+document.fonts.ready.then(layoutCollage);
+layoutCollage();
